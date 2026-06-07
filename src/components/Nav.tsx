@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { SITE } from "@/lib/content";
 
 const LINKS = [
   { label: "Results", href: "#results" },
   { label: "Services", href: "#services" },
-  { label: "Approach", href: "#why" },
+  { label: "About", href: "#why" },
   { label: "Projects", href: "#projects" },
   { label: "Reviews", href: "#testimonials" },
 ];
@@ -35,12 +36,17 @@ export default function Nav() {
         }`}
       >
         <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
-          <a href="#top" className="group flex items-baseline gap-2">
-            <span className="font-display text-xl tracking-tight text-cream md:text-2xl">
-              Apex
-            </span>
-            <span className="eyebrow text-gold-soft/80 transition-colors group-hover:text-gold-soft">
-              Exterior Co.
+          <a href="#top" className="group flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="Clean & Green Services"
+              className="h-10 w-10 rounded-full object-cover ring-1 ring-bone/20"
+            />
+            <span className="hidden items-baseline gap-1 sm:flex">
+              <span className="font-display text-xl tracking-tight text-cream md:text-2xl">Clean</span>
+              <span className="font-display text-xl tracking-tight text-sky md:text-2xl">&amp;</span>
+              <span className="font-display text-xl tracking-tight text-gold-soft md:text-2xl">Green</span>
             </span>
           </a>
 
@@ -70,21 +76,9 @@ export default function Nav() {
               className="flex h-10 w-10 items-center justify-center text-cream lg:hidden"
             >
               <div className="flex flex-col gap-1.5">
-                <span
-                  className={`block h-px w-6 bg-current transition-all duration-300 ${
-                    open ? "translate-y-[6.5px] rotate-45" : ""
-                  }`}
-                />
-                <span
-                  className={`block h-px w-6 bg-current transition-all duration-300 ${
-                    open ? "opacity-0" : ""
-                  }`}
-                />
-                <span
-                  className={`block h-px w-6 bg-current transition-all duration-300 ${
-                    open ? "-translate-y-[6.5px] -rotate-45" : ""
-                  }`}
-                />
+                <span className={`block h-px w-6 bg-current transition-all duration-300 ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
+                <span className={`block h-px w-6 bg-current transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+                <span className={`block h-px w-6 bg-current transition-all duration-300 ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
               </div>
             </button>
           </div>
@@ -114,14 +108,14 @@ export default function Nav() {
               </motion.a>
             ))}
             <motion.a
-              href="#booking"
+              href={`tel:${SITE.phoneTel}`}
               onClick={() => setOpen(false)}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 + LINKS.length * 0.06 }}
-              className="mt-6 inline-flex w-fit items-center gap-2 bg-gold-soft px-6 py-3 text-sm tracking-wide text-ink"
+              className="mt-4 font-display text-2xl text-gold-soft"
             >
-              Get Your Free Estimate
+              {SITE.phone}
             </motion.a>
           </motion.div>
         )}

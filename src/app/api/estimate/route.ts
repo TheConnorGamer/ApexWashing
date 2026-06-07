@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
     const from =
       process.env.RESEND_FROM_EMAIL ??
-      "Apex Exterior Co. <onboarding@resend.dev>";
+      "Clean & Green Services <onboarding@resend.dev>";
 
     const lines = [
       ["Name", name],

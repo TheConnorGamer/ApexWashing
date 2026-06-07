@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { img, PHOTOS } from "@/lib/content";
+import { img, PHOTOS, SITE } from "@/lib/content";
 
 export default function FinalCta() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,8 +16,8 @@ export default function FinalCta() {
     <section ref={ref} className="relative flex min-h-[80vh] items-center overflow-hidden bg-ink">
       <motion.img
         style={{ y }}
-        src={img(PHOTOS.villa, 2000)}
-        alt="A beautifully restored luxury property"
+        src={img(PHOTOS.lushLawn, 2000)}
+        alt="A well-maintained Winnipeg property"
         className="absolute inset-0 h-[124%] w-full object-cover opacity-40"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/60" />
@@ -30,7 +30,7 @@ export default function FinalCta() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="eyebrow text-gold-soft"
         >
-          The Apex Difference
+          Spring Cleanup Special — Limited Time
         </motion.span>
 
         <motion.h2
@@ -40,8 +40,8 @@ export default function FinalCta() {
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-7 max-w-4xl font-display text-5xl font-light leading-[1.02] tracking-[-0.02em] text-cream text-balance md:text-7xl lg:text-8xl"
         >
-          Ready to see the{" "}
-          <span className="font-display italic text-gold-soft">difference?</span>
+          Ready for a{" "}
+          <span className="font-display italic text-gold-soft">cleaner yard?</span>
         </motion.h2>
 
         <motion.p
@@ -51,8 +51,8 @@ export default function FinalCta() {
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed text-bone/80 md:text-lg"
         >
-          Join the homeowners and businesses who refuse to settle for ordinary.
-          Your free, no-obligation estimate is one click away.
+          Message us anytime to book or ask questions. We&rsquo;ll come by for a
+          free estimate — no obligation, no hassle.
         </motion.p>
 
         <motion.div
@@ -72,10 +72,10 @@ export default function FinalCta() {
             </svg>
           </a>
           <a
-            href="tel:+15550000000"
+            href={`tel:${SITE.phoneTel}`}
             className="inline-flex items-center justify-center gap-3 border border-cream/30 px-9 py-4 text-sm font-light tracking-wide text-cream transition-all duration-500 hover:border-cream hover:bg-cream/5"
           >
-            Call (555) 000-0000
+            Call {SITE.phone}
           </a>
         </motion.div>
       </div>

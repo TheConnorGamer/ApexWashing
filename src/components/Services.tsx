@@ -19,15 +19,14 @@ export default function Services() {
                 <span className="eyebrow text-gold-soft">What We Do</span>
               </div>
               <h2 className="mt-7 max-w-2xl font-display text-4xl font-light leading-[1.05] tracking-[-0.02em] text-cream text-balance md:text-6xl">
-                A complete exterior care service, delivered with precision.
+                Window cleaning and lawn care, done right.
               </h2>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="max-w-xs text-sm font-light leading-relaxed text-bone/65">
-              Every surface demands a different approach. We tailor pressure,
-              temperature and treatment to protect your property — not just
-              clean it.
+              From streak-free glass to crisp lawn edges — we handle the
+              exterior details that make your property shine.
             </p>
           </Reveal>
         </div>

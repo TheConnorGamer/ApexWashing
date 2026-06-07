@@ -2,7 +2,7 @@
 
 import Counter from "./Counter";
 import Reveal from "./Reveal";
-import { STATS } from "@/lib/content";
+import { SITE, STATS } from "@/lib/content";
 
 export default function Trust() {
   return (
@@ -11,14 +11,12 @@ export default function Trust() {
         <Reveal>
           <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <p className="max-w-md font-display text-2xl font-light leading-snug text-cream md:text-3xl">
-              A local, owner-operated company the city has trusted for over a
-              decade.
+              Locally owned &amp; operated in {SITE.location} since {SITE.est}.
+              Run by {SITE.owners}.
             </p>
             <div className="flex items-center gap-3 text-bone/70">
               <span className="text-gold-soft">★★★★★</span>
-              <span className="text-sm font-light">
-                Rated 5.0 across 600+ verified reviews
-              </span>
+              <span className="text-sm font-light">100% satisfaction rate</span>
             </div>
           </div>
         </Reveal>

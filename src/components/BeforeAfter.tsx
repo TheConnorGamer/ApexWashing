@@ -2,14 +2,34 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+type Variant = "default" | "window" | "garden";
+
 type BeforeAfterProps = {
   src: string;
   alt: string;
+  variant?: Variant;
 };
 
-export default function BeforeAfter({ src, alt }: BeforeAfterProps) {
+const GRIME_CLASS: Record<Variant, string> = {
+  default: "grime",
+  window: "grime-window",
+  garden: "grime-garden",
+};
+
+const OVERLAY_CLASS: Record<Variant, string> = {
+  default: "bg-ink/15",
+  window: "bg-gradient-to-br from-stone/50 via-ink/25 to-stone/40",
+  garden: "bg-gradient-to-t from-ink/60 via-ink/35 to-ink/50",
+};
+
+export default function BeforeAfter({
+  src,
+  alt,
+  variant = "default",
+}: BeforeAfterProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(52);
+  const [failed, setFailed] = useState(false);
   const dragging = useRef(false);
 
   const setFromClientX = useCallback((clientX: number) => {
@@ -19,6 +39,10 @@ export default function BeforeAfter({ src, alt }: BeforeAfterProps) {
     const pct = ((clientX - rect.left) / rect.width) * 100;
     setPos(Math.min(98, Math.max(2, pct)));
   }, []);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
 
   useEffect(() => {
     const move = (e: MouseEvent | TouchEvent) => {
@@ -38,6 +62,16 @@ export default function BeforeAfter({ src, alt }: BeforeAfterProps) {
       window.removeEventListener("touchend", up);
     };
   }, [setFromClientX]);
+
+  if (failed) {
+    return (
+      <div className="flex aspect-[16/10] w-full items-center justify-center bg-graphite text-sm font-light text-bone/50">
+        Image unavailable
+      </div>
+    );
+  }
+
+  const imgClass = "absolute inset-0 h-full w-full object-cover";
 
   return (
     <div
@@ -62,19 +96,20 @@ export default function BeforeAfter({ src, alt }: BeforeAfterProps) {
         if (e.key === "ArrowRight") setPos((p) => Math.min(98, p + 4));
       }}
     >
-      {/* AFTER (clean) — base layer */}
+      {/* AFTER — clean */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
-        alt={`${alt} — after cleaning`}
-        className="absolute inset-0 h-full w-full object-cover"
+        alt=""
         draggable={false}
+        onError={() => setFailed(true)}
+        className={imgClass}
       />
       <span className="absolute right-5 bottom-5 z-20 eyebrow rounded-full border border-cream/25 bg-ink/30 px-3 py-1.5 text-cream/90 backdrop-blur-sm">
         After
       </span>
 
-      {/* BEFORE (grime) — full-size layer clipped via clip-path (never squishes) */}
+      {/* BEFORE — grime / overgrown treatment */}
       <div
         className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
@@ -82,11 +117,21 @@ export default function BeforeAfter({ src, alt }: BeforeAfterProps) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
-          alt={`${alt} — before cleaning`}
-          className="grime absolute inset-0 h-full w-full object-cover"
+          alt=""
           draggable={false}
+          onError={() => setFailed(true)}
+          className={`${imgClass} ${GRIME_CLASS[variant]}`}
         />
-        <div className="absolute inset-0 bg-ink/15" />
+        <div className={`absolute inset-0 ${OVERLAY_CLASS[variant]}`} />
+        {variant === "garden" && (
+          <div
+            className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(115deg, transparent, transparent 18px, rgba(40,30,10,0.18) 18px, rgba(40,30,10,0.18) 20px)",
+            }}
+          />
+        )}
         <span
           className="absolute bottom-5 z-20 eyebrow rounded-full border border-cream/20 bg-ink/40 px-3 py-1.5 text-stone backdrop-blur-sm"
           style={{ left: "1.25rem" }}
@@ -95,7 +140,6 @@ export default function BeforeAfter({ src, alt }: BeforeAfterProps) {
         </span>
       </div>
 
-      {/* Handle */}
       <div
         className="absolute top-0 bottom-0 z-10 w-px bg-gold-soft/90"
         style={{ left: `${pos}%` }}

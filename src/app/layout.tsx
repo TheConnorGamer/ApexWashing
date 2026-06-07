@@ -18,13 +18,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Apex Exterior Co. — Premium Pressure Washing",
+  title: "Clean & Green Services — Window Cleaning & Lawn Care | Winnipeg",
   description:
-    "Apex Exterior Co. delivers concierge-level exterior cleaning for the city's finest homes and properties. Fully insured, owner-operated, and obsessed with visible results.",
+    "Clean & Green Services offers professional window cleaning and lawn care in Winnipeg, MB. Locally owned by Idan & Tristin since 2023. Free estimates — call 204-899-3566.",
   openGraph: {
-    title: "Apex Exterior Co. — Premium Pressure Washing",
+    title: "Clean & Green Services — Winnipeg",
     description:
-      "Concierge-level exterior cleaning for the city's finest properties.",
+      "Windows clean and grass looking green. Window cleaning + lawn care in Winnipeg.",
     type: "website",
   },
 };

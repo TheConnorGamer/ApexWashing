@@ -1,27 +1,35 @@
-// Verified Unsplash photo IDs (architecture / exterior photography).
-// Helper builds an optimized, cropped URL.
+export const SITE = {
+  name: "Clean & Green",
+  fullName: "Clean & Green Services",
+  tagline: "Windows clean and grass looking green",
+  phone: "204-899-3566",
+  phoneTel: "+12048993566",
+  location: "Winnipeg, MB",
+  instagram: "https://www.instagram.com/cleanandgreen.wpg",
+  instagramHandle: "@cleanandgreen.wpg",
+  owners: "Idan & Tristin",
+  est: "2023",
+} as const;
+
 export const img = (id: string, w = 1600, h?: number) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}${
     h ? `&h=${h}` : ""
   }`;
 
+// All IDs verified via GET — broken links cause empty before/after sliders.
 export const PHOTOS = {
-  heroHouse: "photo-1512917774080-9991f1c4c750",
-  modernHome: "photo-1600585154340-be6161a56a0c",
-  estate: "photo-1600596542815-ffad4c1539a9",
-  facade: "photo-1564013799919-ab600027ffc6",
-  poolHome: "photo-1605276374104-dee2a0ed3cd6",
-  roofline: "photo-1600607687939-ce8a6c25118c",
-  driveway: "photo-1600210492493-0946911123ea",
-  patio: "photo-1558036117-15d82a90b9b1",
-  deck: "photo-1523217582562-09d0def993a6",
-  commercial: "photo-1416331108676-a22ccb276e35",
-  building: "photo-1518780664697-55e3ad937233",
-  concrete: "photo-1600573472550-8090b5e0745e",
-  garden: "photo-1600566753086-00f18fb6b3ea",
-  craftsman: "photo-1600047509807-ba8f99d2cdde",
-  villa: "photo-1600210491369-e753d80a41f3",
+  heroLawn: "photo-1600585152915-d208bec867a1",
+  lushLawn: "photo-1600585154340-be6161a56a0c",
+  windows: "photo-1560518883-ce09059eeffa",
+  garden: "photo-1560185007-cde436f6a4d0",
+  lawnCare: "photo-1625246333195-78d9c38ad449",
+  suburban: "photo-1564013799919-ab600027ffc6",
+  yard: "photo-1600566753086-00f18fb6b3ea",
   porch: "photo-1570129477492-45c003edd2be",
+  spring: "photo-1416879595882-3373a0480b5b",
+  windowClose: "photo-1581578731548-c64695cc6952",
+  mulch: "photo-1585320806297-9794b3e4eeae",
+  home: "photo-1600596542815-ffad4c1539a9",
 } as const;
 
 export type Service = {
@@ -35,51 +43,51 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     index: "01",
-    title: "House Washing",
-    blurb: "Soft-wash exterior restoration",
+    title: "Window Cleaning",
+    blurb: "Streak-free exterior glass",
     detail:
-      "A gentle, low-pressure soft-wash system that lifts years of organic growth, pollen and grime from siding, render and brick — without ever risking your finishes.",
-    photo: PHOTOS.modernHome,
+      "Professional exterior window cleaning for homes and small businesses. We remove dirt, pollen, and hard-water spots so your windows look crystal clear — inside and out.",
+    photo: PHOTOS.windows,
   },
   {
     index: "02",
-    title: "Driveway Cleaning",
-    blurb: "Surface-level deep clean",
+    title: "Lawn Mowing & Edging",
+    blurb: "Crisp lines, healthy grass",
     detail:
-      "Surface-cleaner technology delivers a uniform, streak-free finish across concrete, pavers and natural stone, followed by a precision detail of every edge and joint.",
-    photo: PHOTOS.driveway,
+      "Regular mowing and precision edging to keep your lawn looking sharp week after week. We treat every yard like our own — neat, even, and ready for the season.",
+    photo: PHOTOS.lawnCare,
   },
   {
     index: "03",
-    title: "Roof Cleaning",
-    blurb: "Algae & moss treatment",
+    title: "Hand Weeding",
+    blurb: "Garden beds & walkways",
     detail:
-      "A no-pressure biocide treatment that eliminates black streaks, lichen and moss at the root — extending the life of your roof and restoring its original tone.",
-    photo: PHOTOS.roofline,
+      "Careful hand-weeding for garden beds, walkways, and tight spots where machines can't reach. We pull weeds at the root so your landscaping stays clean longer.",
+    photo: PHOTOS.garden,
   },
   {
     index: "04",
-    title: "Concrete Cleaning",
-    blurb: "Walkways, patios & pool decks",
+    title: "Weed Spray Applications",
+    blurb: "Targeted lawn treatment",
     detail:
-      "From oil-stained garage floors to expansive pool decks, we lift embedded grime and re-establish a clean, even surface ready for sealing.",
-    photo: PHOTOS.concrete,
+      "Selective weed spray applications to tackle stubborn growth in your lawn and along edges. Safe, targeted treatments that help your grass thrive.",
+    photo: PHOTOS.yard,
   },
   {
     index: "05",
-    title: "Commercial Washing",
-    blurb: "Storefronts & facilities",
+    title: "Fertilizer & Seeding",
+    blurb: "Thicker, greener turf",
     detail:
-      "Scheduled exterior maintenance for storefronts, offices and multi-unit properties — protecting your brand's first impression with discreet, off-hours service.",
-    photo: PHOTOS.commercial,
+      "Fertilizer and overseeding services to fill in bare patches and give your lawn that deep, healthy green colour Winnipeg summers are made for.",
+    photo: PHOTOS.lushLawn,
   },
   {
     index: "06",
-    title: "Deck & Fence Restoration",
-    blurb: "Wood revival & prep",
+    title: "Spring Cleanups",
+    blurb: "Raking, debris & aeration",
     detail:
-      "Careful wood-safe cleaning that strips greying and mildew to reveal the natural grain — the ideal foundation before staining or sealing.",
-    photo: PHOTOS.deck,
+      "Full spring cleanups including raking, debris removal, aeration, and more. Get your property ready for the season — ask about our limited-time spring special.",
+    photo: PHOTOS.spring,
   },
 ];
 
@@ -93,32 +101,32 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    title: "The Hillcrest Residence",
-    location: "Bel Terra Heights",
-    service: "Full Exterior & Roof Soft-Wash",
-    outcome: "Listed nine days later — above asking.",
-    photo: PHOTOS.poolHome,
+    title: "River Heights Home",
+    location: "River Heights",
+    service: "Exterior Window Cleaning",
+    outcome: "Every pane streak-free — the homeowner booked us for the full season.",
+    photo: PHOTOS.suburban,
   },
   {
-    title: "Maison Laurier",
-    location: "Old Town Quarter",
-    service: "Stone Facade & Limewash Detail",
-    outcome: "Restored a 1920s facade to its original warmth.",
-    photo: PHOTOS.facade,
+    title: "St. Vital Property",
+    location: "St. Vital",
+    service: "Lawn Mow, Edge & Trim",
+    outcome: "Overgrown lawn transformed in a single visit.",
+    photo: PHOTOS.heroLawn,
   },
   {
-    title: "Cedar & Vine Estate",
-    location: "Northridge",
-    service: "Driveway, Patio & Deck Restoration",
-    outcome: "Two seasons of buildup removed in a single visit.",
-    photo: PHOTOS.estate,
+    title: "Charleswood Garden",
+    location: "Charleswood",
+    service: "Hand Weeding & Mulch Refresh",
+    outcome: "Weeds cleared and beds looking fresh for spring.",
+    photo: PHOTOS.mulch,
   },
   {
-    title: "Meridian Commercial Plaza",
-    location: "Riverfront District",
-    service: "Commercial Storefront Program",
-    outcome: "Quarterly maintenance contract secured.",
-    photo: PHOTOS.building,
+    title: "Tuxedo Yard",
+    location: "Tuxedo",
+    service: "Spring Cleanup Package",
+    outcome: "Full yard reset — raking, debris removal, and aeration done.",
+    photo: PHOTOS.home,
   },
 ];
 
@@ -131,36 +139,98 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "I've used three different companies over the years. Apex is simply on another level. They treated our home like it was their own — and the result genuinely looked like a renovation.",
-    name: "Eleanor V.",
-    role: "Bel Terra Heights",
+      "Idan and Tristin are incredibly reliable. They show up when they say they will, work hard, and our windows have never looked better. Highly recommend to anyone in Winnipeg.",
+    name: "Sarah M.",
+    role: "River Heights",
   },
   {
     quote:
-      "They arrived exactly when they said they would, protected every plant and fixture, and left the property immaculate. Worth every dollar, and then some.",
-    name: "Marcus & Priya D.",
-    role: "Northridge Estate",
+      "We hired them for lawn mowing and edging all summer. Always respectful of our property, always detailed. Our neighbours keep asking who does our yard.",
+    name: "Mike & Jen K.",
+    role: "St. Vital",
   },
   {
     quote:
-      "Our storefront has never looked better. Clients noticed within a week. Apex understands that presentation is everything in our business.",
-    name: "Daniel R.",
-    role: "Meridian Plaza",
+      "The spring cleanup was worth every penny. They raked, cleared debris, and aerated — our lawn came back greener than it has in years.",
+    name: "David L.",
+    role: "Charleswood",
   },
 ];
 
 export const STATS = [
-  { value: 14, suffix: "+", label: "Years in business" },
-  { value: 4200, suffix: "+", label: "Properties serviced" },
-  { value: 5.0, suffix: "★", label: "Average client rating", decimals: 1 },
-  { value: 100, suffix: "%", label: "Fully insured & bonded" },
+  { value: 3, suffix: "+", label: "Years serving Winnipeg" },
+  { value: 5, suffix: "★", label: "Star-rated service", decimals: 0 },
+  { value: 100, suffix: "%", label: "Satisfaction rate" },
+  { value: 2, suffix: "", label: "Local owners you can meet", decimals: 0 },
 ];
 
 export const SERVICE_OPTIONS = [
-  "House Washing",
-  "Driveway Cleaning",
-  "Roof Cleaning",
-  "Concrete Cleaning",
-  "Commercial Pressure Washing",
-  "Deck & Fence Restoration",
+  "Window Cleaning",
+  "Lawn Mowing & Edging",
+  "Hand Weeding",
+  "Weed Spray Applications",
+  "Fertilizer & Seeding",
+  "Aeration Services",
+  "Spring Cleanup",
+];
+
+export const WHY_US = [
+  {
+    n: "01",
+    title: "Reliable & on time",
+    body: "We commit to a window and we keep it. You get a confirmed appointment and a heads-up when we're on our way.",
+  },
+  {
+    n: "02",
+    title: "Locally owned since 2023",
+    body: "Run by Idan and Tristin — two hardworking Winnipeg teens who started this business to help neighbours keep their properties looking great.",
+  },
+  {
+    n: "03",
+    title: "Respectful of your property",
+    body: "We treat your home and yard with care. Clean work areas, careful foot traffic, and zero shortcuts.",
+  },
+  {
+    n: "04",
+    title: "Free estimates",
+    body: "Message us anytime for a free quote. We can come by, walk the property with you, and give you a clear price before we start.",
+  },
+  {
+    n: "05",
+    title: "Detailed, careful work",
+    body: "Known for being thorough — whether it's streak-free windows or crisp lawn edges, we take pride in every job.",
+  },
+  {
+    n: "06",
+    title: "100% satisfaction",
+    body: "If something isn't right, we'll make it right. Your approval is how we measure a job well done.",
+  },
+];
+
+export type ResultCase = {
+  src: string;
+  alt: string;
+  title: string;
+  location: string;
+  note: string;
+  variant: "window" | "garden";
+};
+
+export const RESULTS: ResultCase[] = [
+  {
+    src: "/results/window-after.jpg",
+    alt: "Exterior window cleaning",
+    title: "Exterior Window Cleaning",
+    location: "Winnipeg, MB",
+    note: "Hard-water film and grime removed — streak-free glass in one visit.",
+    variant: "window",
+  },
+  {
+    src: "/results/garden-after.jpg",
+    alt: "Garden bed restoration",
+    title: "Garden Bed Restoration",
+    location: "Winnipeg, MB",
+    note: "Weeds cleared, beds edged, and fresh mulch laid.",
+    variant: "garden",
+  },
 ];

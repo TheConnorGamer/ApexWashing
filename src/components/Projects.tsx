@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "./Reveal";
+import SafeImage from "./SafeImage";
 import { img, PROJECTS } from "@/lib/content";
 
 export default function Projects() {
@@ -15,7 +16,7 @@ export default function Projects() {
                 <span className="eyebrow text-gold-soft">Featured Projects</span>
               </div>
               <h2 className="mt-7 max-w-2xl font-display text-4xl font-light leading-[1.05] tracking-[-0.02em] text-cream text-balance md:text-6xl">
-                A portfolio measured in transformations.
+                Recent work across Winnipeg.
               </h2>
             </div>
           </Reveal>
@@ -35,8 +36,7 @@ export default function Projects() {
             <Reveal key={p.title} delay={(i % 2) * 0.1}>
               <article className={`group ${i % 2 === 1 ? "md:mt-24" : ""}`}>
                 <div className="relative aspect-[4/3] overflow-hidden bg-ink">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <SafeImage
                     src={img(p.photo, 1200)}
                     alt={`${p.title} — ${p.service}`}
                     className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"

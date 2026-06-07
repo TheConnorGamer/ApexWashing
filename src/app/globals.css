@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0c0b09;
-  --color-charcoal: #14130f;
-  --color-charcoal-soft: #1c1a15;
-  --color-graphite: #2a271f;
-  --color-cream: #f4f0e7;
-  --color-bone: #e8e2d4;
-  --color-stone: #b9b2a1;
-  --color-muted: #8d8676;
-  --color-gold: #b6924f;
-  --color-gold-soft: #cdab6e;
-  --color-gold-deep: #8f7038;
+  --color-ink: #071209;
+  --color-charcoal: #0c1810;
+  --color-charcoal-soft: #122018;
+  --color-graphite: #1e3024;
+  --color-cream: #f4faf6;
+  --color-bone: #dce8e0;
+  --color-stone: #9bb5a4;
+  --color-muted: #6d8a78;
+  /* Remapped accent tokens → clean green palette */
+  --color-gold: #3d9e58;
+  --color-gold-soft: #5cb876;
+  --color-gold-deep: #2a7a42;
+  --color-sky: #4a9fd4;
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
@@ -20,8 +22,8 @@
 }
 
 :root {
-  --background: #14130f;
-  --foreground: #f4f0e7;
+  --background: #0c1810;
+  --foreground: #f4faf6;
 }
 
 * {
@@ -42,11 +44,10 @@ body {
 }
 
 ::selection {
-  background: var(--color-gold);
+  background: var(--color-gold-soft);
   color: var(--color-ink);
 }
 
-/* Refined scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -75,16 +76,21 @@ body {
     font-size: 0.72rem;
     font-weight: 500;
   }
-  /* The "grime" treatment used for before-states in comparison sliders */
   .grime {
     filter: brightness(0.62) contrast(0.92) saturate(0.65) sepia(0.32) blur(0.4px);
+  }
+  .grime-window {
+    filter: brightness(0.48) contrast(0.78) saturate(0.35) sepia(0.2) blur(1.2px);
+  }
+  .grime-garden {
+    filter: brightness(0.42) contrast(1.15) saturate(0.25) sepia(0.55) hue-rotate(-18deg)
+      blur(0.6px);
   }
   .noise {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   }
 }
 
-/* Cinematic hero zoom */
 @keyframes kenburns {
   0% {
     transform: scale(1.08) translate3d(0, 0, 0);

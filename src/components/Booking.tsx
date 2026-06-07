@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "./Reveal";
-import { SERVICE_OPTIONS } from "@/lib/content";
+import { SERVICE_OPTIONS, SITE } from "@/lib/content";
 
 const TIME_SLOTS = ["Morning (8–11am)", "Midday (11am–2pm)", "Afternoon (2–5pm)"];
 
@@ -108,8 +108,8 @@ export default function Booking() {
                     Request received.
                   </h3>
                   <p className="mt-4 max-w-sm text-sm font-light leading-relaxed text-bone/70">
-                    Thank you. A member of the Apex team will reach out shortly to
-                    confirm your estimate and appointment window.
+                    Thank you. {SITE.owners} will reach out shortly to confirm
+                    your estimate and appointment window.
                   </p>
                   <button
                     type="button"
@@ -141,7 +141,7 @@ export default function Booking() {
                     </div>
                     <div>
                       <label className={labelClass} htmlFor="phone">Phone</label>
-                      <input id="phone" name="phone" required disabled={loading} placeholder="(555) 000-0000" className={fieldClass} />
+                      <input id="phone" name="phone" required disabled={loading} placeholder={SITE.phone} className={fieldClass} />
                     </div>
                   </div>
 

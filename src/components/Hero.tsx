@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { img, PHOTOS } from "@/lib/content";
+import { img, PHOTOS, SITE } from "@/lib/content";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,21 +21,15 @@ export default function Hero() {
       ref={ref}
       className="relative flex h-[100svh] min-h-[640px] w-full items-end overflow-hidden bg-ink"
     >
-      {/* Background media layer */}
       <motion.div style={{ y }} className="absolute inset-0 -top-[10%] h-[120%]">
-        {/*
-          Cinematic background. To use video, add public/video/hero.mp4 and set
-          HAS_HERO_VIDEO to true below.
-        */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={img(PHOTOS.heroHouse, 2000)}
-          alt="A luxury home with pristine exterior at dusk"
+          src={img(PHOTOS.heroLawn, 2000)}
+          alt="A beautifully maintained green lawn in Winnipeg"
           className="animate-kenburns h-full w-full object-cover"
         />
       </motion.div>
 
-      {/* Tonal grading */}
       <motion.div
         style={{ opacity: overlayOpacity }}
         className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/35"
@@ -43,7 +37,6 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent" />
       <div className="noise pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay" />
 
-      {/* Content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
         className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-20 md:px-10 md:pb-28"
@@ -56,12 +49,12 @@ export default function Hero() {
         >
           <span className="h-px w-12 bg-gold-soft/70" />
           <span className="eyebrow text-gold-soft">
-            Premium Exterior Cleaning · Est. 2011
+            Spring Cleanup Special · Winnipeg, MB · Est. {SITE.est}
           </span>
         </motion.div>
 
         <h1 className="mt-7 max-w-5xl font-display text-[2.6rem] font-light leading-[1.02] tracking-[-0.02em] text-cream text-balance sm:text-6xl md:text-7xl lg:text-[5.4rem]">
-          {["Your property wasn’t", "built to look"].map((line, i) => (
+          {["Windows clean.", "Grass looking"].map((line, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, y: 40 }}
@@ -75,9 +68,7 @@ export default function Hero() {
             >
               {line}{" "}
               {i === 1 && (
-                <span className="font-display italic text-gold-soft">
-                  dirty.
-                </span>
+                <span className="font-display italic text-gold-soft">green.</span>
               )}
             </motion.span>
           ))}
@@ -89,10 +80,9 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-8 max-w-xl text-base font-light leading-relaxed text-bone/85 md:text-lg"
         >
-          Concierge-level pressure washing for the city&rsquo;s finest homes and
-          properties. We restore exteriors to their original brilliance — with
-          meticulous care, fully insured crews, and results you can see from the
-          street.
+          Professional window cleaning and lawn care for Winnipeg homes — run by{" "}
+          {SITE.owners}. Reliable, respectful, and detailed. We help neighbours
+          keep their properties clean, fresh, and well taken care of.
         </motion.p>
 
         <motion.div
@@ -106,13 +96,7 @@ export default function Hero() {
             className="group inline-flex items-center justify-center gap-3 bg-cream px-8 py-4 text-sm font-medium tracking-wide text-ink transition-all duration-500 hover:bg-gold-soft"
           >
             Get Your Free Estimate
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="transition-transform duration-500 group-hover:translate-x-1"
-            >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="transition-transform duration-500 group-hover:translate-x-1">
               <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
@@ -125,7 +109,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
