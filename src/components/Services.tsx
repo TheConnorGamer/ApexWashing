@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
+import SafeImage from "./SafeImage";
 import { img, SERVICES } from "@/lib/content";
 
 export default function Services() {
@@ -39,10 +40,9 @@ export default function Services() {
                 onMouseLeave={() => setActive(null)}
                 className="group relative flex h-full min-h-[420px] flex-col justify-end overflow-hidden bg-charcoal p-8 md:min-h-[460px]"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <SafeImage
                   src={img(s.photo, 900)}
-                  alt={s.title}
+                  alt=""
                   className="absolute inset-0 h-full w-full object-cover opacity-30 transition-all duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-55"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/10 transition-opacity duration-700 group-hover:from-ink/95" />
@@ -58,6 +58,11 @@ export default function Services() {
                     {s.blurb}
                   </p>
 
+                  {/* Always visible on mobile — hover expand on desktop */}
+                  <p className="pt-4 text-sm font-light leading-relaxed text-bone/75 md:hidden">
+                    {s.detail}
+                  </p>
+
                   <motion.div
                     initial={false}
                     animate={{
@@ -65,14 +70,14 @@ export default function Services() {
                       opacity: active === i ? 1 : 0,
                     }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
+                    className="hidden overflow-hidden md:block"
                   >
                     <p className="pt-4 text-sm font-light leading-relaxed text-bone/75">
                       {s.detail}
                     </p>
                   </motion.div>
 
-                  <div className="mt-5 flex items-center gap-2 text-xs tracking-wide text-gold-soft/0 transition-colors duration-500 group-hover:text-gold-soft">
+                  <div className="mt-5 hidden items-center gap-2 text-xs tracking-wide text-gold-soft/0 transition-colors duration-500 group-hover:text-gold-soft md:flex">
                     <span className="eyebrow text-[0.62rem]">Learn more</span>
                     <span className="h-px w-6 bg-gold-soft/60" />
                   </div>

@@ -35,7 +35,12 @@ export default function Results() {
           {RESULTS.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.12}>
               <figure className="group">
-                <BeforeAfter src={c.src} alt={c.alt} variant={c.variant} />
+                <BeforeAfter
+                  after={c.after}
+                  before={c.before}
+                  alt={c.alt}
+                  variant={c.variant}
+                />
                 <figcaption className="mt-5 flex items-start justify-between gap-6">
                   <div>
                     <h3 className="font-display text-xl font-light text-cream">{c.title}</h3>

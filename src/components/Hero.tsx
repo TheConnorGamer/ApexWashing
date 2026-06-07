@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { img, PHOTOS, SITE } from "@/lib/content";
+import { SITE } from "@/lib/content";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,8 +24,12 @@ export default function Hero() {
       <motion.div style={{ y }} className="absolute inset-0 -top-[10%] h-[120%]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={img(PHOTOS.heroLawn, 2000)}
-          alt="A beautifully maintained green lawn in Winnipeg"
+          src="/hero.jpg"
+          alt="A beautifully maintained green lawn at a Winnipeg home"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          decoding="async"
           className="animate-kenburns h-full w-full object-cover"
         />
       </motion.div>
@@ -49,7 +53,9 @@ export default function Hero() {
         >
           <span className="h-px w-12 bg-gold-soft/70" />
           <span className="eyebrow text-gold-soft">
-            Spring Cleanup Special · Winnipeg, MB · Est. {SITE.est}
+            <span className="text-gold-soft">Spring Cleanup Special</span>
+            <span className="mx-2 hidden text-bone/40 sm:inline">·</span>
+            <span className="block sm:inline">Winnipeg, MB · Est. {SITE.est}</span>
           </span>
         </motion.div>
 

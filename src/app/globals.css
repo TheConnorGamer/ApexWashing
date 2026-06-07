@@ -36,6 +36,21 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+/* Fixed nav offset for anchor links */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Keyboard focus — visible only for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-gold-soft);
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 body {
   background: var(--color-charcoal);
   color: var(--color-cream);
@@ -76,6 +91,38 @@ body {
     font-size: 0.72rem;
     font-weight: 500;
   }
+  @media (max-width: 640px) {
+    .eyebrow {
+      letter-spacing: 0.16em;
+      font-size: 0.65rem;
+    }
+  }
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
   .grime {
     filter: brightness(0.62) contrast(0.92) saturate(0.65) sepia(0.32) blur(0.4px);
   }
@@ -109,5 +156,19 @@ body {
   }
   .animate-kenburns {
     animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Room for mobile sticky CTA */
+@media (max-width: 639px) {
+  body {
+    padding-bottom: 4.5rem;
   }
 }

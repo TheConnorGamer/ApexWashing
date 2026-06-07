@@ -6,9 +6,15 @@ type SafeImageProps = {
   src: string;
   alt: string;
   className?: string;
+  loading?: "lazy" | "eager";
 };
 
-export default function SafeImage({ src, alt, className }: SafeImageProps) {
+export default function SafeImage({
+  src,
+  alt,
+  className,
+  loading = "lazy",
+}: SafeImageProps) {
   const [failed, setFailed] = useState(false);
 
   useEffect(() => setFailed(false), [src]);
@@ -30,6 +36,8 @@ export default function SafeImage({ src, alt, className }: SafeImageProps) {
     <img
       src={src}
       alt={alt}
+      loading={loading}
+      decoding="async"
       className={className}
       onError={() => setFailed(true)}
     />

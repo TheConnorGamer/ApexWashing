@@ -23,6 +23,13 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
       <motion.header
@@ -35,7 +42,10 @@ export default function Nav() {
             : "border-b border-transparent bg-transparent"
         }`}
       >
-        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
+        <nav
+          className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10"
+          aria-label="Main navigation"
+        >
           <a href="#top" className="group flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -71,7 +81,10 @@ export default function Nav() {
               Free Estimate
             </a>
             <button
-              aria-label="Toggle menu"
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
               onClick={() => setOpen((o) => !o)}
               className="flex h-10 w-10 items-center justify-center text-cream lg:hidden"
             >
@@ -88,6 +101,7 @@ export default function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -108,11 +122,21 @@ export default function Nav() {
               </motion.a>
             ))}
             <motion.a
-              href={`tel:${SITE.phoneTel}`}
+              href="#booking"
               onClick={() => setOpen(false)}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 + LINKS.length * 0.06 }}
+              className="mt-6 inline-flex w-fit bg-gold-soft px-6 py-3 text-sm font-medium tracking-wide text-ink"
+            >
+              Get Your Free Estimate
+            </motion.a>
+            <motion.a
+              href={`tel:${SITE.phoneTel}`}
+              onClick={() => setOpen(false)}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 + (LINKS.length + 1) * 0.06 }}
               className="mt-4 font-display text-2xl text-gold-soft"
             >
               {SITE.phone}

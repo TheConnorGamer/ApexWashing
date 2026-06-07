@@ -14,7 +14,7 @@ export default function Booking() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const today = new Date().toISOString().split("T")[0];
 
   const onFiles = (list: FileList | null) => {
     if (!list) return;
@@ -74,11 +74,18 @@ export default function Booking() {
               and hold your preferred slot while you decide.
             </p>
 
+            <a
+              href={`tel:${SITE.phoneTel}`}
+              className="mt-8 inline-flex items-center gap-2 text-lg font-light text-gold-soft transition-colors hover:text-cream"
+            >
+              Or call {SITE.phone}
+            </a>
+
             <ul className="mt-10 space-y-4">
               {[
                 "No-obligation, fixed-price estimate",
                 "Response within one business day",
-                "Fully insured & guaranteed work",
+                "100% satisfaction guaranteed",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm font-light text-bone/75">
                   <span className="text-gold-soft">—</span>
@@ -91,6 +98,9 @@ export default function Booking() {
 
         <Reveal delay={0.1}>
           <div className="relative border border-bone/10 bg-charcoal p-8 md:p-12">
+            <div aria-live="polite" aria-atomic="true" className="sr-only">
+              {submitted ? "Request submitted successfully." : error ?? ""}
+            </div>
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div
@@ -127,7 +137,6 @@ export default function Booking() {
               ) : (
                 <motion.form
                   key="form"
-                  ref={formRef}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -174,7 +183,7 @@ export default function Booking() {
                   <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
                     <div>
                       <label className={labelClass} htmlFor="date">Preferred date</label>
-                      <input id="date" name="date" type="date" disabled={loading} className={`${fieldClass} [color-scheme:dark]`} />
+                      <input id="date" name="date" type="date" min={today} disabled={loading} className={`${fieldClass} [color-scheme:dark]`} />
                     </div>
                     <div>
                       <label className={labelClass}>Preferred window</label>

@@ -161,7 +161,7 @@ export const STATS = [
   { value: 3, suffix: "+", label: "Years serving Winnipeg" },
   { value: 5, suffix: "★", label: "Star-rated service", decimals: 0 },
   { value: 100, suffix: "%", label: "Satisfaction rate" },
-  { value: 2, suffix: "", label: "Local owners you can meet", decimals: 0 },
+  { value: 7, suffix: "", label: "Services offered", decimals: 0 },
 ];
 
 export const SERVICE_OPTIONS = [
@@ -208,7 +208,10 @@ export const WHY_US = [
 ];
 
 export type ResultCase = {
-  src: string;
+  /** After / clean image */
+  after: string;
+  /** Before / dirty image — omit to use CSS grime filter on `after` */
+  before?: string;
   alt: string;
   title: string;
   location: string;
@@ -218,7 +221,8 @@ export type ResultCase = {
 
 export const RESULTS: ResultCase[] = [
   {
-    src: "/results/window-after.jpg",
+    before: "/results/window-before.png",
+    after: "/results/window-after.png",
     alt: "Exterior window cleaning",
     title: "Exterior Window Cleaning",
     location: "Winnipeg, MB",
@@ -226,7 +230,8 @@ export const RESULTS: ResultCase[] = [
     variant: "window",
   },
   {
-    src: "/results/garden-after.jpg",
+    before: "/results/garden-before.png",
+    after: "/results/garden-after.png",
     alt: "Garden bed restoration",
     title: "Garden Bed Restoration",
     location: "Winnipeg, MB",

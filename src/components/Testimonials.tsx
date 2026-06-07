@@ -27,7 +27,11 @@ export default function Testimonials() {
           </div>
         </Reveal>
 
-        <div className="relative mt-12 min-h-[320px] md:min-h-[360px]">
+        <div
+          className="relative mt-12 min-h-[320px] md:min-h-[360px]"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           <AnimatePresence mode="wait">
             <motion.blockquote
               key={i}

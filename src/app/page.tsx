@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import MobileCta from "@/components/MobileCta";
 import Hero from "@/components/Hero";
 import Trust from "@/components/Trust";
 import Results from "@/components/Results";
@@ -13,8 +14,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <Trust />
         <Results />
@@ -26,6 +30,7 @@ export default function Home() {
         <FinalCta />
       </main>
       <Footer />
+      <MobileCta />
     </>
   );
 }

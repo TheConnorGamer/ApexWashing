@@ -5,7 +5,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 type Variant = "default" | "window" | "garden";
 
 type BeforeAfterProps = {
-  src: string;
+  after: string;
+  before?: string;
   alt: string;
   variant?: Variant;
 };
@@ -23,7 +24,8 @@ const OVERLAY_CLASS: Record<Variant, string> = {
 };
 
 export default function BeforeAfter({
-  src,
+  after,
+  before,
   alt,
   variant = "default",
 }: BeforeAfterProps) {
@@ -31,6 +33,7 @@ export default function BeforeAfter({
   const [pos, setPos] = useState(52);
   const [failed, setFailed] = useState(false);
   const dragging = useRef(false);
+  const useRealPair = Boolean(before);
 
   const setFromClientX = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -42,7 +45,7 @@ export default function BeforeAfter({
 
   useEffect(() => {
     setFailed(false);
-  }, [src]);
+  }, [after, before]);
 
   useEffect(() => {
     const move = (e: MouseEvent | TouchEvent) => {
@@ -76,7 +79,7 @@ export default function BeforeAfter({
   return (
     <div
       ref={containerRef}
-      className="group relative aspect-[16/10] w-full cursor-ew-resize select-none overflow-hidden bg-ink"
+      className="group relative aspect-[16/10] w-full cursor-ew-resize select-none overflow-hidden bg-ink touch-pan-y"
       onMouseDown={(e) => {
         dragging.current = true;
         setFromClientX(e.clientX);
@@ -99,7 +102,7 @@ export default function BeforeAfter({
       {/* AFTER — clean */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={src}
+        src={after}
         alt=""
         draggable={false}
         onError={() => setFailed(true)}
@@ -109,28 +112,32 @@ export default function BeforeAfter({
         After
       </span>
 
-      {/* BEFORE — grime / overgrown treatment */}
+      {/* BEFORE — real photo or CSS grime treatment */}
       <div
         className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={src}
+          src={useRealPair ? before! : after}
           alt=""
           draggable={false}
           onError={() => setFailed(true)}
-          className={`${imgClass} ${GRIME_CLASS[variant]}`}
+          className={`${imgClass}${useRealPair ? "" : ` ${GRIME_CLASS[variant]}`}`}
         />
-        <div className={`absolute inset-0 ${OVERLAY_CLASS[variant]}`} />
-        {variant === "garden" && (
-          <div
-            className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(115deg, transparent, transparent 18px, rgba(40,30,10,0.18) 18px, rgba(40,30,10,0.18) 20px)",
-            }}
-          />
+        {!useRealPair && (
+          <>
+            <div className={`absolute inset-0 ${OVERLAY_CLASS[variant]}`} />
+            {variant === "garden" && (
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70 mix-blend-multiply"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(115deg, transparent, transparent 18px, rgba(40,30,10,0.18) 18px, rgba(40,30,10,0.18) 20px)",
+                }}
+              />
+            )}
+          </>
         )}
         <span
           className="absolute bottom-5 z-20 eyebrow rounded-full border border-cream/20 bg-ink/40 px-3 py-1.5 text-stone backdrop-blur-sm"
