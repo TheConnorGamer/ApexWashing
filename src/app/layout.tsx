@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Fraunces, Inter } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
 import "./globals.css";
@@ -63,6 +64,11 @@ export default function RootLayout({
       >
         <JsonLd />
         {children}
+        <Script
+          src="https://chatbot-factory-sigma.vercel.app/widget.js"
+          data-company-id="de06565d-e646-4d92-b3f7-92866fca7da2"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
